@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<title>Forest Springs Growth Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#EEEEE6; --surface:#FAFAF6; --surface-2:#E4E6DC; --ink:#1D2B21; --ink-2:#4C5A4F; --muted:#7A857B;
+  --line:#D3D8CC; --forest:#2F4A36; --forest-ink:#F2F4EE; --moss:#6C8A5E;
+  --on:#2E7A4B; --on-bg:#DCEBDF; --risk:#9A6412; --risk-bg:#F4E6CB; --off:#A53A2C; --off-bg:#F4D9D3; --none:#6D7670; --none-bg:#E3E5DF; --note-bg:#FBF1D6; --note-line:#D9B25F; --note-ink:#5B4210; --band-kpi:#DDE7D8; --band-kpi-ink:#2F4A36; --band-rooms:#E9E1D2; --band-rooms-ink:#6B4F24; --band-social:#E6DEE8; --band-social-ink:#5D3F66; --band-rest:#E4E6E1; --band-rest-ink:#4C5A4F;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif; --sans:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#141A16; --surface:#1C241E; --surface-2:#243027; --ink:#E7ECE4; --ink-2:#B4C0B5; --muted:#86938A; --line:#304034;
+  --forest:#233A2A; --forest-ink:#E7ECE4; --moss:#8FB07F;
+  --on:#6CC48D; --on-bg:#1F3A29; --risk:#E0AE5A; --risk-bg:#3A2F1A; --off:#EE8877; --off-bg:#43231E; --none:#9AA59C; --none-bg:#29302B; --note-bg:#3A3120; --note-line:#B8914A; --note-ink:#F0DDB0; --band-kpi:#1A2A1F; --band-kpi-ink:#9CC08A; --band-rooms:#2A2419; --band-rooms-ink:#D9B77E; --band-social:#261F29; --band-social-ink:#C9A6D4; --band-rest:#1B201D; --band-rest-ink:#AFBBB1;}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#141A16; --surface:#1C241E; --surface-2:#243027; --ink:#E7ECE4; --ink-2:#B4C0B5; --muted:#86938A; --line:#304034;
+  --forest:#233A2A; --forest-ink:#E7ECE4; --moss:#8FB07F;
+  --on:#6CC48D; --on-bg:#1F3A29; --risk:#E0AE5A; --risk-bg:#3A2F1A; --off:#EE8877; --off-bg:#43231E; --none:#9AA59C; --none-bg:#29302B; --note-bg:#3A3120; --note-line:#B8914A; --note-ink:#F0DDB0; --band-kpi:#1A2A1F; --band-kpi-ink:#9CC08A; --band-rooms:#2A2419; --band-rooms-ink:#D9B77E; --band-social:#261F29; --band-social-ink:#C9A6D4; --band-rest:#1B201D; --band-rest-ink:#AFBBB1;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;padding-inline:16px;padding-block:24px 64px}
+.wrap{max-width:1120px;margin:0 auto;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(26px,4vw,36px)} h2{font-size:22px} h3{font-size:16px;font-family:var(--sans);font-weight:700;letter-spacing:0}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--moss)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)} .small{font-size:12.5px}
+button,select,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--moss);outline-offset:2px}
+
+header.top{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:flex-end;justify-content:space-between;border-bottom:2px solid var(--forest);padding-bottom:18px}
+.top .who{display:grid;gap:6px}
+.top .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+select{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.btn{border:1px solid var(--forest);background:var(--forest);color:var(--forest-ink);border-radius:8px;padding:9px 14px;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+
+.summary{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px;align-items:stretch}
+@media (max-width:760px){.summary{grid-template-columns:1fr}}
+.verdict{background:var(--forest);color:var(--forest-ink);border-radius:14px;padding:22px 24px;display:grid;gap:14px}
+.verdict .eyebrow{color:#B9CFAE}
+.verdict p{margin:0;font-family:var(--serif);font-size:19px;line-height:1.35}
+.counts{display:flex;flex-wrap:wrap;gap:8px}
+.count{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border-radius:999px;padding:5px 12px 5px 6px;font-weight:600;font-size:13px}
+.count b{display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:999px;font-family:var(--mono);font-size:12px}
+.count.on b{background:var(--on-bg);color:var(--on)} .count.risk b{background:var(--risk-bg);color:var(--risk)} .count.off b{background:var(--off-bg);color:var(--off)} .count.none b{background:var(--none-bg);color:var(--none)}
+.period{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:12px;align-content:start}
+.period dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0}
+.period dt{color:var(--muted)} .period dd{margin:0;text-align:right}
+
+section{display:grid;gap:14px}
+.sec-head{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;justify-content:space-between}
+.sec-head p{margin:0;color:var(--ink-2);max-width:62ch}
+
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.pill.on{background:var(--on-bg);color:var(--on)} .pill.risk{background:var(--risk-bg);color:var(--risk)} .pill.off{background:var(--off-bg);color:var(--off)} .pill.none{background:var(--none-bg);color:var(--none)}
+
+.table-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;min-width:720px}
+th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;background:var(--surface-2)}
+td.r,th.r{text-align:right}
+tr.row-off td:first-child{box-shadow:inset 3px 0 0 var(--off)} tr.row-risk td:first-child{box-shadow:inset 3px 0 0 var(--risk)} tr.row-on td:first-child{box-shadow:inset 3px 0 0 var(--on)} tr.row-none td:first-child{box-shadow:inset 3px 0 0 var(--none)}
+.kpi-name{font-weight:600}
+.kpi-def{font-size:12px;color:var(--muted);margin-top:2px;max-width:34ch}
+.bar{height:6px;background:var(--surface-2);border-radius:99px;position:relative;margin-top:8px;min-width:110px}
+.bar i{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--moss)}
+.bar s{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);text-decoration:none;opacity:.55}
+
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.grid3{grid-template-columns:1fr}} @media (max-width:700px){.grid2{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:12px;align-content:start}
+.stat{display:grid;gap:2px}
+.stat .v{font-family:var(--mono);font-size:24px;font-weight:500;font-variant-numeric:tabular-nums}
+.stat .l{font-size:12px;color:var(--muted)}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.meter{height:10px;background:var(--surface-2);border-radius:99px;position:relative;overflow:visible}
+.meter i{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--forest)}
+.meter s{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--risk);text-decoration:none}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted)}
+
+.plans{display:grid;gap:12px}
+.plan{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--off);border-radius:10px;padding:14px 16px;display:grid;gap:6px}
+.plan.risk{border-left-color:var(--risk)}
+.plan .row h3{font-size:15px}
+.plan p{margin:0;white-space:pre-wrap}
+.plan .missing{color:var(--off);font-weight:600}
+.notes{white-space:pre-wrap;margin:0}
+
+.checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 20px}
+@media (max-width:700px){.checklist{grid-template-columns:1fr}}
+.checklist label{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed var(--line)}
+.checklist input{margin-top:3px;accent-color:var(--forest)}
+
+ #app{display:grid;gap:28px}
+.band{display:grid;gap:24px;border-radius:20px;padding:22px clamp(14px,2.5vw,26px) 26px}
+.band.kpi{background:var(--band-kpi)} .band.rooms{background:var(--band-rooms)} .band.social-band{background:var(--band-social)} .band.rest{background:var(--band-rest)}
+.band-label span{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:var(--surface)}
+.band.kpi .band-label span{color:var(--band-kpi-ink)} .band.rooms .band-label span{color:var(--band-rooms-ink)} .band.social-band .band-label span{color:var(--band-social-ink)} .band.rest .band-label span{color:var(--band-rest-ink)}
+.ico{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--surface-2);color:var(--moss);flex:none}
+.note{background:var(--note-bg);color:var(--note-ink);border-left:3px solid var(--note-line);border-radius:8px;padding:10px 12px;margin:0;white-space:pre-wrap;font-size:13px}
+.note b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.src-list{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.src-list li{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:baseline;padding:7px 0;border-bottom:1px dashed var(--line)}
+.src-list li:last-child{border-bottom:0}
+.src-list li.hl{background:var(--on-bg);border-radius:8px;padding:7px 10px;border-bottom:0}
+.tag{font-size:11px;font-weight:700;color:var(--on);margin-left:6px}
+.social .v{font-size:22px}
+.emoji{font-size:26px;line-height:1}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:28px;text-align:center;display:grid;gap:10px;justify-items:center}
+
+/* entry drawer */
+dialog{border:0;padding:0;background:var(--surface);color:var(--ink);border-radius:16px;width:min(760px,calc(100vw - 24px));max-height:calc(100dvh - 32px)}
+dialog::backdrop{background:rgba(10,20,14,.45)}
+.dlg{display:grid;grid-template-rows:auto 1fr auto;max-height:calc(100dvh - 32px)}
+.dlg header,.dlg footer{padding:16px 20px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.dlg header{border-bottom:1px solid var(--line)} .dlg footer{border-top:1px solid var(--line)}
+.dlg .body{overflow:auto;padding:4px 20px 20px;display:grid;gap:18px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:10px}
+legend{font-family:var(--serif);font-size:17px;font-weight:600;padding:14px 0 2px}
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px 14px}
+.f{display:grid;gap:4px}
+.f span{font-size:12px;color:var(--ink-2);font-weight:600}
+.f small{font-size:11px;color:var(--muted)}
+.f input,.f textarea{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+.f textarea{min-height:64px;resize:vertical}
+.f.wide{grid-column:1/-1}
+.src{font-size:12px;color:var(--muted);margin:0}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--forest);color:var(--forest-ink);padding:10px 16px;border-radius:10px;font-weight:600}
+@media (prefers-reduced-motion:no-preference){.bar i,.meter i{transition:width .5s ease}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="top">
+    <div class="who">
+      <span class="eyebrow">Forest Springs Resort &amp; Spa · Marketing &amp; Growth</span>
+      <h1>Weekly Growth Scorecard</h1>
+      <span class="muted small">Owner: Stef Cuadrado · Measured against the Q4 2026 targets (Oct 1 – Dec 31)</span>
+    </div>
+    <div class="controls">
+      <label for="weekSel" class="small muted">Week of</label>
+      <select id="weekSel" aria-label="Choose a week"></select>
+      <button class="btn" id="editBtn" type="button" hidden>Update this week</button>
+      <button class="btn ghost" id="newBtn" type="button" hidden>Log a new week</button>
+    </div>
+  </header>
+
+  <div id="app"></div>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <form class="dlg" id="form" method="dialog">
+    <header>
+      <h2 id="dlgTitle">Log the week</h2>
+      <label class="f" style="min-width:180px"><span>Week starting (Friday)</span><input type="date" id="f_weekStart" required></label>
+    </header>
+    <div class="body">
+      <fieldset>
+        <legend>Events pipeline</legend>
+        <p class="src">Source: ClickUp “Weddings &amp; Buyout Leads” list.</p>
+        <div class="fields">
+          <label class="f"><span>New event inquiries</span><input type="number" min="0" id="f_evInq"><small>logged this week, spam excluded</small></label>
+          <label class="f"><span>Answered on standard</span><input type="number" min="0" id="f_evOnTime"><small>reply ≤4 business hrs + quote ≤24 hrs</small></label>
+          <label class="f"><span>Site visits held</span><input type="number" min="0" id="f_evVisits"></label>
+          <label class="f"><span>Open pipeline value ($)</span><input type="number" min="0" step="any" id="f_pipeline"><small>potential revenue, all open leads</small></label>
+          <label class="f"><span>2027 revenue contracted ($)</span><input type="number" min="0" step="any" id="f_contracted"><small>running total · contract + deposit</small></label>
+          <label class="f"><span>Events contracted</span><input type="number" min="0" id="f_eventsWon"><small>running total</small></label>
+          <label class="f wide"><span>Event notes</span><textarea id="f_eventNotes" placeholder="e.g. 1 wedding inquiry for Sep 2027, same-day follow-up, walkthrough done"></textarea></label>
+          <label class="f"><span>Deposits collected ($)</span><input type="number" min="0" step="any" id="f_deposits"><small>running total, Q4</small></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Paid media</legend>
+        <p class="src">Spend from each Ads Manager. Revenue = Cloudbeds bookings matched by UTM or promo code.</p>
+        <div class="fields">
+          <label class="f"><span>Meta spend ($)</span><input type="number" min="0" step="any" id="f_metaSpend"></label>
+          <label class="f"><span>Meta revenue ($)</span><input type="number" min="0" step="any" id="f_metaRev"></label>
+          <label class="f"><span>Google spend ($)</span><input type="number" min="0" step="any" id="f_googleSpend"></label>
+          <label class="f"><span>Google revenue ($)</span><input type="number" min="0" step="any" id="f_googleRev"></label>
+          <label class="f"><span>TikTok spend ($)</span><input type="number" min="0" step="any" id="f_tiktokSpend"></label>
+          <label class="f"><span>TikTok revenue ($)</span><input type="number" min="0" step="any" id="f_tiktokRev"></label>
+          <label class="f"><span>ChatGPT ads spend ($)</span><input type="number" min="0" step="any" id="f_chatgptSpend"></label>
+          <label class="f"><span>ChatGPT ads revenue ($)</span><input type="number" min="0" step="any" id="f_chatgptRev"></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Direct revenue &amp; rooms</legend>
+        <p class="src">Source: Cloudbeds channel report + reservations tagged to your codes.</p>
+        <div class="fields">
+          <label class="f"><span>Attributable direct revenue ($)</span><input type="number" min="0" step="any" id="f_attrRev"><small>promo code / UTM only, no SEO</small></label>
+          <label class="f"><span>Direct bookings</span><input type="number" min="0" id="f_directBk"></label>
+          <label class="f"><span>Total bookings</span><input type="number" min="0" id="f_totalBk"></label>
+          <label class="f"><span>Room revenue ($)</span><input type="number" min="0" step="any" id="f_roomRev"></label>
+          <label class="f"><span>ADR ($)</span><input type="number" min="0" step="any" id="f_adr"></label>
+          <label class="f"><span>Occupancy (%)</span><input type="number" min="0" max="100" step="any" id="f_occ"></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Add-on revenue</legend>
+        <div class="fields">
+          <label class="f"><span>Red light therapy ($)</span><input type="number" min="0" step="any" id="f_addonRedLight"><small>Square Appointments</small></label>
+          <label class="f"><span>Forest Lounge bar ($)</span><input type="number" min="0" step="any" id="f_addonBar"><small>Square sales, the week</small></label>
+          <label class="f"><span>Upsells ($)</span><input type="number" min="0" step="any" id="f_addonUpsells"><small>Cloudbeds add-on orders</small></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Partnerships, Local Pass, execution</legend>
+        <div class="fields">
+          <label class="f"><span>Partnerships signed</span><input type="number" min="0" id="f_partners"><small>running total · in writing</small></label>
+          <label class="f"><span>Partners in conversation</span><input type="number" min="0" id="f_partnersOpen"><small>planners, venues, corporate</small></label>
+          <label class="f"><span>Local Pass active members</span><input type="number" min="0" id="f_localPass"><small>paid, active in Square</small></label>
+          <label class="f"><span>ClickUp on-time (%)</span><input type="number" min="0" max="100" step="any" id="f_clickup"></label>
+          <label class="f wide"><span>Partner names / status</span><textarea id="f_partnerNotes" placeholder="e.g. Thorncrown Chapel: proposal sent, meeting booked on Summer's calendar Oct 8"></textarea></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Narrative</legend>
+        <div class="fields">
+          <label class="f wide"><span>Wins this week</span><textarea id="f_wins"></textarea></label>
+          <label class="f wide"><span>What I need from Jacobo</span><textarea id="f_needs" placeholder="Decision, budget or a door opened"></textarea></label>
+        </div>
+        <div id="planFields" class="fields"></div>
+      </fieldset>
+    </div>
+    <footer>
+      <span class="small muted" id="formMsg">Running totals are pre-filled from the previous week.</span>
+      <div style="display:flex;gap:8px">
+        <button type="button" class="btn ghost" id="cancelBtn">Cancel</button>
+        <button type="submit" class="btn" id="saveBtn">Save week</button>
+      </div>
+    </footer>
+  </form>
+</dialog>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const app=$('#app');
+let db=null, weeks=[], sprint={}, canWrite=true, selectedId=null, editingId=null;
+
+/* ---------- targets (from Role & Q3–Q4 Targets, Aug 24 2026) ---------- */
+const Q4={start:'2026-10-01',end:'2026-12-31'};
+const SPRINT=[
+ ['backlog','All active inquiries + backlog logged in ClickUp, pipeline value reported'],
+ ['pipeline','ClickUp events pipeline rebuilt (fields + stages)'],
+ ['email','Events email live, hello@ monitored, front desk SOP briefed'],
+ ['attrib','Attribution live: promo codes, UTM links, campaign tracker'],
+ ['comps','5 local venue comps pulled, 3 packages priced'],
+ ['brochures','Brochures and collateral physically on property'],
+ ['salespdf','One-page sales PDF built'],
+ ['contract','Event contract drafted (legal review pending)'],
+ ['shoot','Styled shoot booked'],
+ ['landing','/weddings and /corporate-retreats pages live with SEO'],
+ ['listings','The Knot / Zola / WeddingWire costs brought to Jacobo'],
+ ['square','Local Pass Square build live'],
+ ['fbbase','Facebook ads baseline pulled from Silo'],
+ ['partners','Partnership target list built, outreach started'],
+ ['q4plan','Q4 plan submitted (strategy memo)']
+];
+
+/* ---------- helpers ---------- */
+const d=s=>new Date(s+'T12:00:00');
+const addDays=(s,n)=>{const x=d(s);x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
+const fmtDate=s=>d(s).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+const money=(v,dec)=>v==null||isNaN(v)?'—':'$'+Number(v).toLocaleString('en-US',{minimumFractionDigits:dec?2:0,maximumFractionDigits:dec?2:0});
+const pct=v=>v==null||isNaN(v)?'—':(Math.round(v*10)/10)+'%';
+const n=v=>(v===''||v==null||isNaN(v))?null:Number(v);
+const sum=(arr,k)=>{let t=0,any=false;arr.forEach(w=>{const v=n(w[k]);if(v!=null){t+=v;any=true}});return any?t:null};
+const latest=(arr,k)=>{for(let i=arr.length-1;i>=0;i--){const v=n(arr[i][k]);if(v!=null)return v}return null};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LABEL={on:'On track',risk:'At risk',off:'Off track',none:'No data'};
+const pill=s=>`<span class="pill ${s}">${LABEL[s]}</span>`;
+
+function periodFor(weekStart){
+  // Q4 scorecard period; weeks before Oct 1 are the September setup sprint, measured at Q4 pace as a preview
+  const inQ4=weekStart>=Q4.start || addDays(weekStart,6)>=Q4.start;
+  const start=inQ4?Q4.start:'2026-09-01', end=inQ4?Q4.end:'2026-09-30';
+  const total=(d(end)-d(start))/864e5+1;
+  let elapsed=(d(addDays(weekStart,6))-d(start))/864e5+1;
+  elapsed=Math.max(7,Math.min(total,elapsed));
+  return {inQ4,start,end,pace:elapsed/total,weeks:elapsed/7,label:inQ4?'Q4 2026':'September setup sprint'};
+}
+
+/* ---------- KPI engine ---------- */
+function compute(sel){
+  const P=periodFor(sel.weekStart);
+  const qw=weeks.filter(w=>w.weekStart>=addDays(P.start,-6)&&w.weekStart<=sel.weekStart&&periodFor(w.weekStart).start===P.start);
+  const K=[];
+  // 1 response time
+  const inq=sum(qw,'evInq'), onT=sum(qw,'evOnTime');
+  let r1=inq?onT/inq*100:null;
+  K.push({key:'response',name:'Event inquiry response time',def:'% of inquiries answered ≤4 business hrs and quoted ≤24 hrs',
+    week:n(sel.evInq)?pct(n(sel.evOnTime)/n(sel.evInq)*100):'—',qtd:pct(r1),target:'95%',floor:'80%',
+    status:r1==null?'none':r1>=95?'on':r1>=80?'risk':'off',prog:r1==null?null:r1/100,mark:.95,weight:'$175'});
+  // 2 inquiries per month
+  const perMo=inq==null?null:inq/P.weeks*4.345;
+  K.push({key:'inquiries',name:'Event inquiries generated',def:'Average per month, spam excluded',
+    week:sel.evInq??'—',qtd:perMo==null?'—':(Math.round(perMo*10)/10)+' / mo',target:'10 / mo',floor:'6 / mo',
+    status:perMo==null?'none':perMo>=10?'on':perMo>=6?'risk':'off',prog:perMo==null?null:Math.min(1,perMo/15),mark:10/15,weight:'$150'});
+  // 3 FB ROAS
+  const ms=sum(qw,'metaSpend'), mr=sum(qw,'metaRev');
+  const roas=ms?(mr||0)/ms:null, spendPace=1500*P.pace;
+  let s3='none';
+  if(ms!=null){ if(!ms) s3='off'; else { s3=roas>=4?'on':roas>=2.5?'risk':'off'; if(ms<spendPace&&s3==='on') s3='risk'; } }
+  K.push({key:'roas',name:'Facebook ads ROAS',def:`Needs ≥$1,500 tracked spend in Q4. Spend so far ${money(ms)} vs ${money(spendPace)} pace`,
+    week:n(sel.metaSpend)?(Math.round((n(sel.metaRev)||0)/n(sel.metaSpend)*10)/10)+':1':'—',qtd:roas==null?'—':(Math.round(roas*10)/10)+':1',target:'4:1',floor:'2.5:1',
+    status:s3,prog:roas==null?null:Math.min(1,roas/6),mark:4/6,weight:'$150'});
+  // 4 attributable direct revenue
+  const ar=sum(qw,'attrRev'), arT=15000*P.pace, arF=7000*P.pace;
+  K.push({key:'attr',name:'Attributable direct revenue',def:'Promo code or UTM traceable. Quarter target $15K, floor $7K',
+    week:money(n(sel.attrRev)),qtd:money(ar),target:money(arT)+' pace',floor:money(arF)+' pace',
+    status:ar==null?'none':ar>=arT?'on':ar>=arF?'risk':'off',prog:ar==null?null:Math.min(1,ar/15000),mark:P.pace,weight:'$150'});
+  // 5 partnerships
+  const pa=latest(qw,'partners');
+  K.push({key:'partners',name:'Partnerships signed',def:'Written referral or corporate agreement. Quarter target 3, floor 1',
+    week:'—',qtd:pa??'—',target:Math.floor(3*P.pace)+' by now (3 total)',floor:'1 total',
+    status:pa==null?'none':pa>=Math.max(Math.floor(3*P.pace),P.pace>.4?1:0)?'on':pa>=Math.floor(1*P.pace)?'risk':'off',prog:pa==null?null:Math.min(1,pa/5),mark:3/5,weight:'$125'});
+  // 6 direct share
+  const db_=sum(qw,'directBk'), tb=sum(qw,'totalBk'); const ds=tb?db_/tb*100:null;
+  K.push({key:'direct',name:'Direct booking share',def:'Direct bookings ÷ all bookings (Cloudbeds)',
+    week:n(sel.totalBk)?pct(n(sel.directBk)/n(sel.totalBk)*100):'—',qtd:pct(ds),target:'40%',floor:'35%',
+    status:ds==null?'none':ds>=40?'on':ds>=35?'risk':'off',prog:ds==null?null:Math.min(1,ds/50),mark:.8,weight:'$75'});
+  // 7 execution
+  const cu=latest(qw,'clickup');
+  K.push({key:'exec',name:'Execution: ClickUp on-time',def:'Closed by original due date. Quality score set by Jacobo at quarter end',
+    week:pct(n(sel.clickup)),qtd:pct(cu),target:'90%',floor:'70%',
+    status:cu==null?'none':cu>=90?'on':cu>=70?'risk':'off',prog:cu==null?null:cu/100,mark:.9,weight:'$75'});
+  return {P,qw,K};
+}
+
+/* ---------- render ---------- */
+function render(){
+  const sel=weeks.find(w=>w.id===selectedId);
+  $('#editBtn').hidden=!(canWrite&&sel); $('#newBtn').hidden=!canWrite;
+  const ws=$('#weekSel'); ws.innerHTML=weeks.slice().reverse().map(w=>`<option value="${w.id}" ${w.id===selectedId?'selected':''}>${fmtDate(w.weekStart)} – ${fmtDate(addDays(w.weekStart,6))}</option>`).join('')||'<option>No weeks yet</option>';
+  if(!sel){app.innerHTML=`<div class="empty"><h2>No weeks logged yet</h2><p class="muted" style="max-width:48ch;margin:0">Each Friday, log the week (Friday to Thursday). Status on every KPI is worked out automatically against your Q4 targets.</p>${canWrite?'<button class="btn" type="button" id="emptyNew">Log the first week</button>':''}</div>`;const b=$('#emptyNew');if(b)b.onclick=()=>openForm(null);return}
+  const {P,qw,K}=compute(sel);
+  const c={on:0,risk:0,off:0,none:0}; K.forEach(k=>c[k.status]++);
+  const offK=K.filter(k=>k.status==='off'||k.status==='risk');
+  const headline=offK.length===0&&c.none===0?'Every scorecard line is on track.':
+    `${c.on} of ${K.length} scorecard lines on track. ${offK.length?offK.map(k=>k.name.split(':')[0].toLowerCase()).join(', ')+' need'+(offK.length===1?'s':'')+' a recovery plan.':''}${c.none?` ${c.none} not measurable yet.`:''}`;
+
+  // events
+  const contracted=latest(qw,'contracted'), deposits=latest(qw,'deposits'), won=latest(qw,'eventsWon');
+  const evTarget=80000*(P.inQ4?P.pace:0);
+  const evStatus=contracted==null?'none':!P.inQ4?(contracted>0?'on':'none'):contracted>=evTarget?'on':contracted>=20000*P.pace?'risk':'off';
+  const lp=latest(qw,'localPass');
+  const lpStatus=lp==null?'none':!P.inQ4?'none':lp>=50*P.pace?'on':lp>=20*P.pace?'risk':'off';
+
+  // paid media
+  const ch=[['Meta (Facebook / Instagram)','meta','4:1 target · ≥$1,500 Q4 spend'],['Google Ads','google','No target set yet'],['TikTok Ads','tiktok','No target set yet'],['ChatGPT Ads','chatgpt','No target set yet']];
+  let tS=0,tR=0;
+  const chRows=ch.map(([label,k,note])=>{
+    const ws_=n(sel[k+'Spend']), wr=n(sel[k+'Rev']), qs=sum(qw,k+'Spend'), qr=sum(qw,k+'Rev');
+    tS+=qs||0; tR+=qr||0;
+    const ro=qs?(qr||0)/qs:null;
+    const st=!qs?'none':ro>=4?'on':ro>=2.5?'risk':'off';
+    return `<tr class="row-${st}"><td><div class="kpi-name">${label}</div><div class="kpi-def">${note}</div></td>
+      <td class="r num">${money(ws_,1)}</td><td class="r num">${money(wr,1)}</td><td class="r num">${money(qs,1)}</td><td class="r num">${money(qr,1)}</td>
+      <td class="r num">${ro==null?'—':(Math.round(ro*10)/10)+':1'}</td><td>${qs?pill(st):'<span class="pill none">Not live</span>'}</td></tr>`}).join('');
+  const blended=tS?tR/tS:null;
+
+  const plans=sel.plans||{};
+  const sprintDone=SPRINT.filter(([k])=>sprint[k]).length;
+
+  app.innerHTML=`
+  <div class="band kpi"><div class="band-label"><span>KPIs &amp; accountability</span></div>
+  <div class="summary">
+    <div class="verdict">
+      <span class="eyebrow">Week of ${fmtDate(sel.weekStart)} · ${P.label}</span>
+      <p>${esc(headline)}</p>
+      <div class="counts">
+        <span class="count on"><b>${c.on}</b>On track</span><span class="count risk"><b>${c.risk}</b>At risk</span>
+        <span class="count off"><b>${c.off}</b>Off track</span><span class="count none"><b>${c.none}</b>No data</span>
+      </div>
+    </div>
+    <div class="period">
+      <span class="eyebrow">Where the quarter stands</span>
+      <dl class="small">
+        <dt>Period</dt><dd>${fmtDate(P.start)} – ${fmtDate(P.end)}</dd>
+        <dt>Time elapsed</dt><dd class="num">${Math.round(P.pace*100)}%</dd>
+        <dt>Weeks logged</dt><dd class="num">${qw.length}</dd>
+        <dt>2027 events contracted</dt><dd class="num">${money(contracted)} / $80,000</dd>
+        <dt>Commission earned (2.5% of deposits)</dt><dd class="num">${money(deposits==null?null:deposits*.025)}</dd>
+      </dl>
+      ${P.inQ4?'':'<p class="small muted" style="margin:0">Q4 targets start Oct 1. September weeks show the pace you would be on.</p>'}
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head"><div><span class="eyebrow">Quarterly scorecard · $900 at target</span><h2>My KPIs</h2></div>
+    <p class="small">Quarter-to-date against target. Targets that build over the quarter are shown at today's pace.</p></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>KPI</th><th class="r">This week</th><th class="r">Quarter to date</th><th class="r">Target</th><th class="r">Floor</th><th style="width:150px">Progress</th><th>Status</th></tr></thead>
+      <tbody>${K.map(k=>`<tr class="row-${k.status}"><td><div class="kpi-name">${k.name}</div><div class="kpi-def">${esc(k.def)}</div></td>
+        <td class="r num">${esc(k.week)}</td><td class="r num"><b>${esc(k.qtd)}</b></td><td class="r num">${esc(k.target)}</td><td class="r num muted">${esc(k.floor)}</td>
+        <td>${k.prog==null?'<span class="muted small">—</span>':`<div class="bar" title="Marker = target"><i style="width:${Math.max(2,k.prog*100)}%"></i><s style="left:${k.mark*100}%"></s></div>`}</td>
+        <td>${pill(k.status)}</td></tr>`).join('')}</tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div><span class="eyebrow">Off track → back on track</span><h2>Recovery plan</h2></div>
+    <p class="small">Every line that is at risk or off track, with what I'm doing about it this week.</p></div>
+    <div class="plans">${offK.length?offK.map(k=>`<div class="plan ${k.status}"><div class="row"><h3>${k.name}</h3>${pill(k.status)}</div>
+      <span class="small muted">Now ${esc(k.qtd)} · target ${esc(k.target)}</span>
+      ${plans[k.key]?`<p>${esc(plans[k.key])}</p>`:'<p class="missing">No recovery plan written yet.</p>'}</div>`).join(''):'<div class="panel"><p style="margin:0">Nothing at risk or off track this week.</p></div>'}
+      ${c.none?`<div class="panel"><h3>Not measurable yet</h3><p class="small" style="margin:0">${K.filter(k=>k.status==='none').map(k=>k.name).join(' · ')}. These need their data source set up (ClickUp fields, promo codes / UTMs, or live campaigns) before they can be scored.</p></div>`:''}
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div><span class="eyebrow">Priority 1 · Events</span><h2>Events pipeline &amp; revenue</h2></div>${pill(evStatus)}</div>
+    <div class="grid2">
+      <div class="panel">
+        <div class="row"><h3>2027 event revenue under contract</h3><span class="num">${money(contracted)}</span></div>
+        <div class="meter" title="Orange marker = Q4 milestone $80K"><i style="width:${Math.min(100,(contracted||0)/187000*100)}%"></i><s style="left:${80000/187000*100}%"></s></div>
+        <div class="legend"><span>Season goal $187,000 (16 micro-weddings + 4 buyouts)</span><span>Marker: $80,000 by Dec 31</span></div>
+        <div class="grid3" style="gap:10px">
+          <div class="stat"><span class="v">${won??'—'}</span><span class="l">events contracted (goal 20)</span></div>
+          <div class="stat"><span class="v">${money(latest(qw,'pipeline'))}</span><span class="l">open pipeline value</span></div>
+          <div class="stat"><span class="v">${money(deposits)}</span><span class="l">deposits collected</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>This week</h3>
+        <div class="grid3" style="gap:10px">
+          <div class="stat"><span class="v">${sel.evInq??'—'}</span><span class="l">new inquiries</span></div>
+          <div class="stat"><span class="v">${sel.evOnTime??'—'}</span><span class="l">answered on standard</span></div>
+          <div class="stat"><span class="v">${sel.evVisits??'—'}</span><span class="l">site visits held</span></div>
+        </div>
+        ${sel.eventNotes?`<p class="note"><b>Note</b>${esc(sel.eventNotes)}</p>`:''}
+        <p class="small muted" style="margin:0">Funnel math: at 12% inquiry-to-booked, 20 events needs ~15 inquiries a month. At 18% it needs ~10. Response speed is the lever.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div><span class="eyebrow">Paid media</span><h2>Ad spend &amp; ROAS by channel</h2></div>
+    <span class="small">Blended ROAS, quarter to date: <b class="num">${blended==null?'—':(Math.round(blended*10)/10)+':1'}</b> on ${money(tS,1)}</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Channel</th><th class="r">Spend (wk)</th><th class="r">Revenue (wk)</th><th class="r">Spend (QTD)</th><th class="r">Revenue (QTD)</th><th class="r">ROAS</th><th>Status</th></tr></thead>
+      <tbody>${chRows}</tbody></table></div>
+  </section>
+
+  ${Array.isArray(sel.attrBreakdown)&&sel.attrBreakdown.length?`<section>
+    <div class="sec-head"><div><span class="eyebrow">KPI 4 detail</span><h2>Attributable direct revenue by code &amp; source</h2></div><span class="small">This week: <b class="num">${money(n(sel.attrRev),1)}</b></span></div>
+    <div class="table-wrap"><table style="min-width:520px">
+      <thead><tr><th>Code / source</th><th>Type</th><th class="r">Bookings</th><th class="r">Revenue</th></tr></thead>
+      <tbody>${sel.attrBreakdown.map(r=>`<tr><td class="kpi-name">${esc(r.label)}</td><td class="muted small">${esc(r.type||'')}</td><td class="r num">${r.n??'—'}</td><td class="r num">${money(n(r.rev),1)}</td></tr>`).join('')}</tbody>
+    </table></div>
+  </section>`:''}
+
+  <div class="grid2">
+    <section class="panel">
+      <div class="row"><div><span class="eyebrow">Partnerships</span><h3 style="font-family:var(--serif);font-size:19px;margin-top:2px">Planners, venues, corporate</h3></div>${pill(K[4].status)}</div>
+      <div class="grid2" style="gap:10px">
+        <div class="stat"><span class="v">${latest(qw,'partners')??'—'}</span><span class="l">signed in writing (Q4 goal 3)</span></div>
+        <div class="stat"><span class="v">${sel.partnersOpen??'—'}</span><span class="l">in conversation</span></div>
+      </div>
+      ${sel.partnerNotes?`<p class="note"><b>Note</b>${esc(sel.partnerNotes)}</p>`:''}
+    </section>
+    <section class="panel">
+      <div class="row"><div><span class="eyebrow">Local Pass</span><h3 style="font-family:var(--serif);font-size:19px;margin-top:2px">Founding Local members</h3></div>${pill(lpStatus)}</div>
+      <div class="row"><span class="num" style="font-size:24px">${lp??'—'} <span class="muted small">/ 50</span></span><span class="small muted">$89/mo each · 20 = first bonus</span></div>
+      <div class="meter"><i style="width:${Math.min(100,(lp||0)/50*100)}%"></i><s style="left:40%"></s></div>
+    </section>
+  </div>
+
+  </div>
+
+  <div class="band rooms"><div class="band-label"><span>Rooms &amp; revenue</span></div>
+  <section>
+    <div class="sec-head"><div><span class="eyebrow">Context</span><h2>Rooms this week</h2></div><span class="small muted">Cloudbeds</span></div>
+    <div class="panel"><div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+      <div class="stat"><span class="v">${money(n(sel.roomRev))}</span><span class="l">room revenue</span></div>
+      <div class="stat"><span class="v">${sel.totalBk??'—'}</span><span class="l">bookings</span></div>
+      <div class="stat"><span class="v">${money(n(sel.adr),1)}</span><span class="l">ADR</span></div>
+      <div class="stat"><span class="v">${pct(n(sel.occ))}</span><span class="l">occupancy</span></div>
+      <div class="stat"><span class="v">${money(n(sel.adr)!=null&&n(sel.occ)!=null?n(sel.adr)*n(sel.occ)/100:null,1)}</span><span class="l">RevPAR</span></div>
+      <div class="stat"><span class="v">${n(sel.totalBk)?pct(n(sel.directBk)/n(sel.totalBk)*100):'—'}</span><span class="l">direct share (${sel.directBk??'—'} of ${sel.totalBk??'—'})</span></div>
+    </div>
+    ${Array.isArray(sel.bookingSources)&&sel.bookingSources.length?`<div style="display:grid;gap:8px;margin-top:6px">
+      <h3>Where direct web bookings came from <span class="muted small" style="font-weight:400">GA4</span></h3>
+      <ul class="src-list">${sel.bookingSources.map(b=>`<li class="${b.hl?'hl':''}"><span>${esc(b.src)}${b.hl?`<span class="tag">${esc(b.hl)}</span>`:''}</span><span class="num small">${b.n} booking${b.n===1?'':'s'}</span><span class="num">${money(n(b.rev),1)}</span></li>`).join('')}</ul>
+    </div>`:''}
+    </div>
+  </section>
+
+  <section>
+    ${(()=>{const A=[
+      ['addonRedLight','Red light therapy','Square Appointments','<path d="M12 21c-4-2-7-5-7-9 2 0 4 1 5 2 0-3 1-6 2-8 1 2 2 5 2 8 1-1 3-2 5-2 0 4-3 7-7 9z"/>'],
+      ['addonBar','Forest Lounge bar','Square, weekly sales','<path d="M5 4h14l-6 8v6h3v2H8v-2h3v-6z"/><path d="M8 7h8"/>'],
+      ['addonUpsells','Upsells','Cloudbeds add-on orders','<path d="M4 9h16l-1.5 11h-13z"/><path d="M8 9a4 4 0 0 1 8 0"/>']];
+      const tot=A.reduce((s,[k])=>s+(n(sel[k])||0),0), any=A.some(([k])=>n(sel[k])!=null);
+      return `<div class="sec-head"><div><span class="eyebrow">Beyond rooms</span><h2>Add-on revenue</h2></div><span class="small">Total this week: <b class="num">${any?money(tot,1):'—'}</b></span></div>
+      <div class="grid3">${A.map(([k,l,src,ic])=>`<div class="panel addon"><div class="row" style="justify-content:flex-start;gap:12px;flex-wrap:nowrap"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ic}</svg></span><div class="stat"><span class="v">${money(n(sel[k]),1)}</span><span class="l">${l} · ${src}</span></div></div></div>`).join('')}</div>`})()}
+  </section>
+
+  </div>
+
+  <div class="band social-band"><div class="band-label"><span>Social media</span></div>
+  ${(sel.influencerNote||sel.attrNote)?`<p class="note"><b>Note</b>${esc(sel.influencerNote||sel.attrNote)}</p>`:''}
+  <div class="grid2">
+    ${Array.isArray(sel.influencers)&&sel.influencers.length?sel.influencers.map(i=>`<section class="panel">
+      <div class="row" style="justify-content:flex-start;gap:12px;flex-wrap:nowrap"><span class="emoji" aria-hidden="true">🌟</span><div><span class="eyebrow">Influencer of the week</span><h3 style="font-family:var(--serif);font-size:19px;margin-top:2px">${esc(i.name)}</h3></div></div>
+      <div class="grid3" style="gap:10px;grid-template-columns:repeat(auto-fit,minmax(110px,1fr))">
+        <div class="stat"><span class="v">${esc(i.followers||'—')}</span><span class="l">${esc(i.platform||'')} followers</span></div>
+        <div class="stat"><span class="v">${i.views!=null?Number(i.views).toLocaleString('en-US'):'—'}</span><span class="l">views (reach)</span></div>
+      </div>
+      <p class="small muted" style="margin:0">${esc(i.stay||'')} · ${esc(i.content||'')}</p>
+    </section>`).join(''):''}
+  </div>
+
+  ${sel.social?(()=>{const S=sel.social, f=v=>v==null?'—':Number(v).toLocaleString('en-US');
+    const card=(emoji,name,rows)=>`<section class="panel social"><div class="row" style="justify-content:flex-start;gap:10px"><span class="emoji" aria-hidden="true">${emoji}</span><h3 style="font-family:var(--serif);font-size:18px">${name}</h3></div>
+      <div class="grid2" style="gap:10px">${rows.map(([v,l])=>`<div class="stat"><span class="v">${v}</span><span class="l">${l}</span></div>`).join('')}</div></section>`;
+    return `<section><div class="sec-head"><div><span class="eyebrow">Organic social</span><h2>Followers &amp; reach</h2></div><span class="small muted">Windsor.ai · this week</span></div>
+    <div class="grid3">
+      ${card('📸','Instagram',[[f(S.ig?.followers),'followers'],['+'+f(S.ig?.newFollowers),'new this week'],[f(S.ig?.reach),'reach'],[f(S.ig?.views),'views']])}
+      ${card('👍','Facebook',[[f(S.fb?.followers),'followers'],[f(S.fb?.reach),'reach (unique)'],[f(S.fb?.impressions),'impressions'],[f(S.fb?.pageViews),'page views']])}
+      ${card('🎵','TikTok',[[S.tt?.followers!=null?f(S.tt.followers):'—','followers'],['+'+f(S.tt?.newFollowers),'new this week'],[f(S.tt?.views),'video views'],[f(S.tt?.likes),'likes']])}
+    </div></section>`})():''}
+
+
+  </div>
+
+  <div class="band rest"><div class="band-label"><span>Wins, asks &amp; setup</span></div>
+  <div class="grid2">
+    <section class="panel"><span class="eyebrow">Wins</span><p class="notes">${esc(sel.wins)||'<span class="muted">—</span>'}</p></section>
+    <section class="panel"><span class="eyebrow">What I need from Jacobo</span><p class="notes">${esc(sel.needs)||'<span class="muted">—</span>'}</p></section>
+  </div>
+
+  <section>
+    <div class="sec-head"><div><span class="eyebrow">Due Sept 30 · pass / fail</span><h2>September setup sprint</h2></div><span class="num">${sprintDone} / ${SPRINT.length} done</span></div>
+    <div class="panel"><div class="checklist">${SPRINT.map(([k,l])=>`<label for="sp_${k}"><input type="checkbox" id="sp_${k}" data-k="${k}" ${sprint[k]?'checked':''} ${canWrite?'':'disabled'}><span>${l}</span></label>`).join('')}</div></div>
+  </section>
+  </div>`;
+
+  app.querySelectorAll('.checklist input').forEach(cb=>cb.onchange=async()=>{
+    sprint={...sprint,[cb.dataset.k]:cb.checked};
+    if(db){try{await db.doc('sprint/sept2026').set({items:sprint})}catch(e){toast('Could not save the checklist. Try again.')}}
+    render();
+  });
+}
+
+/* ---------- form ---------- */
+const FIELDS=['evInq','evOnTime','evVisits','pipeline','contracted','eventsWon','deposits','metaSpend','metaRev','googleSpend','googleRev','tiktokSpend','tiktokRev','chatgptSpend','chatgptRev','attrRev','directBk','totalBk','roomRev','adr','occ','partners','partnersOpen','localPass','clickup','addonRedLight','addonBar','addonUpsells'];
+const CUMULATIVE=['contracted','eventsWon','deposits','partners','partnersOpen','localPass','pipeline','clickup'];
+const TEXT=['partnerNotes','eventNotes','wins','needs'];
+const PLAN_KEYS=[['response','Response time'],['inquiries','Inquiries generated'],['roas','Facebook ROAS'],['attr','Attributable direct revenue'],['partners','Partnerships'],['direct','Direct booking share'],['exec','ClickUp on-time']];
+$('#planFields').innerHTML=`<p class="src f wide">Recovery plans: fill in any KPI that's at risk or off track. What you'll do, by when, and who you need.</p>`+PLAN_KEYS.map(([k,l])=>`<label class="f wide"><span>Plan · ${l}</span><textarea id="p_${k}"></textarea></label>`).join('');
+
+function mondayOf(date){const x=new Date(date);x.setHours(12);const day=(x.getDay()+2)%7;x.setDate(x.getDate()-day);return x.toISOString().slice(0,10)}
+function openForm(w){
+  editingId=w?w.id:null;
+  const prev=w||weeks[weeks.length-1]||{};
+  $('#f_weekStart').value=w?w.weekStart:mondayOf(new Date(Date.now()-7*864e5));
+  FIELDS.forEach(k=>{$('#f_'+k).value=w?(w[k]??''):(CUMULATIVE.includes(k)?(prev[k]??''):'')});
+  TEXT.forEach(k=>{$('#f_'+k).value=w?(w[k]??''):(k==='partnerNotes'?(prev[k]??''):'')});
+  PLAN_KEYS.forEach(([k])=>{$('#p_'+k).value=w?((w.plans||{})[k]??''):((prev.plans||{})[k]??'')});
+  $('#dlgTitle').textContent=w?'Update the week':'Log a new week';
+  $('#formMsg').textContent=w?'Editing a saved week.':'Running totals and plans are pre-filled from the previous week.';
+  $('#dlg').showModal();
+}
+$('#editBtn').onclick=()=>openForm(weeks.find(w=>w.id===selectedId));
+$('#newBtn').onclick=()=>openForm(null);
+$('#cancelBtn').onclick=()=>$('#dlg').close();
+$('#form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const ws=mondayOf(d($('#f_weekStart').value));
+  const base=editingId?{...(weeks.find(w=>w.id===editingId)||{})}:{}; delete base.id;
+  const doc={...base,weekStart:ws,updatedAt:new Date().toISOString(),plans:{}};
+  FIELDS.forEach(k=>{const v=$('#f_'+k).value;doc[k]=v===''?null:Number(v)});
+  TEXT.forEach(k=>doc[k]=$('#f_'+k).value.trim());
+  PLAN_KEYS.forEach(([k])=>{const v=$('#p_'+k).value.trim();if(v)doc.plans[k]=v});
+  const id=ws;
+  if(editingId&&editingId!==id&&db){try{await db.doc('weeks/'+editingId).delete()}catch(_){}}
+  if(db){
+    $('#saveBtn').disabled=true;
+    try{await db.doc('weeks/'+id).set(doc);selectedId=id;$('#dlg').close();toast('Week saved')}
+    catch(err){$('#formMsg').textContent=err&&err.code==='invalid_argument'?'You have view-only access, so this week was not saved.':'Could not save. Check your connection and try again.'}
+    $('#saveBtn').disabled=false;
+  }else{
+    const i=weeks.findIndex(w=>w.id===id); const rec={id,...doc};
+    if(i>=0)weeks[i]=rec;else weeks.push(rec); weeks.sort((a,b)=>a.weekStart<b.weekStart?-1:1);
+    selectedId=id;$('#dlg').close();toast('Saved in this view only');render();
+  }
+});
+$('#weekSel').onchange=e=>{selectedId=e.target.value;render()};
+
+function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;t.setAttribute('role','status');document.body.appendChild(t);setTimeout(()=>t.remove(),2600)}
+
+/* ---------- boot ---------- */
+const SNAP={"weeks": [{"adr": 147.77, "attrRev": null, "chatgptRev": null, "chatgptSpend": null, "clickup": null, "contracted": null, "deposits": null, "directBk": 5, "evInq": null, "evOnTime": null, "evVisits": null, "eventsWon": null, "googleRev": null, "googleSpend": null, "localPass": null, "metaRev": 0, "metaSpend": 49.83, "needs": "", "occ": 48.3, "partnerNotes": "", "partners": null, "partnersOpen": null, "pipeline": null, "plans": {}, "roomRev": 22721.58, "tiktokRev": null, "tiktokSpend": null, "totalBk": 37, "updatedAt": "2026-09-25T20:50:00Z", "weekStart": "2026-09-11", "wins": "", "id": "2026-09-11"}, {"addonBar": 346.57, "addonRedLight": 128.01, "addonUpsells": 316.95, "adr": 171.58, "attrBreakdown": [{"label": "Google Ads \u00b7 Remarketing (Search_Forest_Springs_RMKT)", "n": 7, "rev": 3237.65, "type": "Paid search \u00b7 UTM"}, {"label": "Google Ads \u00b7 Unbranded search", "n": 3, "rev": 1724, "type": "Paid search \u00b7 UTM"}, {"label": "Google Ads \u00b7 Branded search", "n": 1, "rev": 1297.04, "type": "Paid search \u00b7 UTM"}, {"label": "Instagram link (ig / social)", "n": 2, "rev": 1571.53, "type": "Social \u00b7 UTM"}, {"label": "Website Tracking 15% Midweek Subscribers", "n": 1, "rev": 337.45, "type": "Promo code"}, {"label": "Midweek Escape \u2013 Social Media 15%", "n": 1, "rev": 96.9, "type": "Promo code"}], "attrRev": 8264.57, "bookingSources": [{"n": 11, "rev": 6258.69, "src": "Google Ads (paid search)"}, {"n": 7, "rev": 5217.86, "src": "Unattributed (not set)"}, {"n": 2, "rev": 2013.03, "src": "Direct (typed URL)"}, {"n": 2, "rev": 1571.53, "src": "Instagram link (ig / social)"}, {"hl": "Bing Places activated this week", "n": 2, "rev": 1128.42, "src": "Bing organic"}, {"n": 1, "rev": 552.42, "src": "Google organic"}, {"n": 1, "rev": 157.84, "src": "Own site referral"}, {"hl": "AI search booking", "n": 1, "rev": 155.55, "src": "ChatGPT"}, {"n": 1, "rev": 129.25, "src": "Cross-network"}], "chatgptRev": null, "chatgptSpend": null, "clickup": null, "contracted": 0, "deposits": 0, "directBk": 22, "evInq": 1, "evOnTime": 1, "evVisits": 1, "eventNotes": "1 wedding inquiry for Sep/Oct 2027. Followed up the same day, the couple walked the property, and Summer followed up by phone.", "eventsWon": 0, "googleRev": 6258.69, "googleSpend": 533.22, "influencerNote": "Influencers promote the Social Media code instead of a personal code, so influencer bookings show up under that code. Promo-code rows come from the Cloudbeds rate plan report and may overlap with a UTM booking.", "influencers": [{"bookings": 0, "code": "OZARKK10", "content": "1 reel + 2 stories", "followers": "28.9K", "name": "Karissa Tonack", "platform": "Instagram", "stay": "Stayed Sep 19\u201321", "views": 14300}], "localPass": 0, "metaRev": 0, "metaSpend": 0, "needs": "", "occ": 50.6, "partnerNotes": "Pauline Rescorl (wedding planner): reciprocal referral proposal sent Sep 24. Follow-up Sep 30.", "partners": 0, "partnersOpen": 1, "pipeline": null, "plans": {"attr": "Meta ads will support this directly once they're running. Google Ads already drove $6,259 this week.", "direct": "Same as above. Direct share should rise once Meta ads are live and pushing traffic to the booking engine.", "inquiries": "The events landing page is live. Once ads start, inquiries should pick up. On the organic side: show our events and post more wedding content on Instagram.", "partners": "A formal signed contract isn't realistic with most local partners. The better path is lighter, more organic agreements (confirmed by email). I haven't had time to work on this because operational work took priority this week.", "roas": "Still waiting on the Escoot videos. The midweek creatives are ready to go, so Meta can launch with those in the meantime."}, "roomRev": 30369.75, "social": {"fb": {"followers": 886, "impressions": 10031, "pageViews": 491, "reach": 4927}, "ig": {"followers": 1488, "newFollowers": 275, "reach": 14586, "views": 30957}, "tt": {"followers": null, "likes": 37, "newFollowers": 1, "views": 2348}}, "tiktokRev": null, "tiktokSpend": null, "totalBk": 110, "updatedAt": "2026-09-25T22:20:00Z", "weekStart": "2026-09-18", "wins": "Activated Bing Places. It already brought 2 bookings ($1,128) this week.\nGoogle Business Profile: bar and red light therapy listings activated.\nFall and cinema photos done.\nFound and fixed the forwarded-calls issue (calls were going to the Vesta dialpad).", "id": "2026-09-18"}], "sprint": {"email": true, "partners": true, "pipeline": true, "salespdf": true}};
+weeks=SNAP.weeks;sprint=SNAP.sprint;canWrite=false;selectedId=weeks[weeks.length-1].id;
+render();
+if(false)(async()=>{
+  try{
+    const user=await window.claude?.use?.('user');
+    if(user){const cw=user.can?.('data.write');const v=await cw; if(v===false)canWrite=false}
+  }catch(_){}
+  try{db=await window.claude?.use?.('db')}catch(_){db=null}
+  if(!db){render();return}
+  db.collection('weeks').orderBy('weekStart','asc').onSnapshot(snap=>{
+    weeks=snap.docs.map(s=>({id:s.id,...s.data()}));
+    if(!selectedId||!weeks.find(w=>w.id===selectedId))selectedId=weeks.length?weeks[weeks.length-1].id:null;
+    render();
+  },()=>{});
+  db.doc('sprint/sept2026').onSnapshot(s=>{sprint=(s.exists&&s.data().items)||{};render()},()=>{});
+})();
+})();
+</script>
+
+</body>
+</html>
